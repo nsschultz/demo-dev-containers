@@ -2,25 +2,19 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ../frontend/
-      dockerfile: Dockerfile
-      target: dev
+      context: frontend
+      dockerfile: Dockerfile.dd
     restart: always
-    command: sleep infinity
     environment:
       - PLAYER_API_URL=http://localhost:8080
     ports:
       - '3000:3000'
-    volumes:
-      - ../frontend/:/app/
 
   backend:
     build: 
-      context: ../backend/
-      dockerfile: Dockerfile
-      target: dev
+      context: backend
+      dockerfile: Dockerfile.dd
     restart: always
-    command: sleep infinity
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - PLAYER_DATABASE=player-database
@@ -29,11 +23,11 @@ services:
       - PLAYER_DATABASE_USER=player-database-user
     ports:
       - '8080:8080'
-    volumes:
-      - ../backend/:/app/
 
   database:
-    build: ../database/
+    build: 
+      context: database
+      dockerfile: Dockerfile
     restart: always
     environment:
       - POSTGRES_DB=player-database
