@@ -5,6 +5,7 @@ services:
       context: frontend
       dockerfile: Dockerfile.dd
     restart: always
+    command: sleep infinity
     environment:
       - PLAYER_API_URL=http://localhost:8080
     ports:
@@ -15,6 +16,7 @@ services:
       context: backend
       dockerfile: Dockerfile.dd
     restart: always
+    command: sleep infinity
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - PLAYER_DATABASE=player-database
