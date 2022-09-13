@@ -1,0 +1,67 @@
+{
+  "name": "fantasy-baseball-ui",
+  "version": "1.1.3",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "@material-ui/core": "^5.0.0-alpha.29",
+    "@material-ui/icons": "^5.0.0-alpha.28",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "axios": "^0.21.1",
+    "file-saver": "^2.0.5",
+    "history": "^5.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-scripts": "^4.0.3"
+  },
+  "scripts": {
+    "start": "./env.sh && cp env-config.js public/ && react-scripts start",
+    "lint": "eslint src",
+    "test": "CI=true react-scripts test --silent --coverage --testResultsProcessor jest-sonar-reporter --detectOpenHandles",
+    "build:default": "react-scripts build",
+    "build:docker": "npm run build:default && npm run lint && npm run test"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^7.2.1",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "enzyme": "^3.11.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "jest-enzyme": "^7.1.2",
+    "jest-sonar": "^0.2.8",
+    "jest-sonar-reporter": "^2.0.0",
+    "react-test-renderer": "^16.13.1",
+    "sonarqube-scanner": "^2.6.0"
+  },
+  "jest": {
+    "clearMocks": true
+  },
+  "jestSonar": {
+    "reportPath": "reports",
+    "reportFile": "test-report.xml",
+    "indent": 4
+  }
+}

@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  frontend:
+    build: ../frontend/
+    restart: always
+    environment:
+      - PLAYER_API_URL=http://localhost:8080
+    ports:
+      - '3000:8080'
+
+  backend:
+    build: ../backend/
+    restart: always
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - PLAYER_DATABASE=player-database
+      - PLAYER_DATABASE_HOST=database
+      - PLAYER_DATABASE_PASSWORD=postgres
+      - PLAYER_DATABASE_USER=player-database-user
+    ports:
+      - '8080:8080'
+
+  database:
+    image: postgres:14.1-alpine
+    # build: ../database/
+    restart: always
+    environment:
+      - POSTGRES_DB=player-database
+      - POSTGRES_USER=player-database-user
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:6.6
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+    ports:
+      - '9000:80'
