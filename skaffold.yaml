@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta27
+kind: Config
+metadata:
+  name: demo-dev-containers
+build:
+  artifacts:
+  - image: kube_backend
+    context: backend
+    docker:
+      dockerfile: Dockerfile
+  - image: kube_database
+    context: database
+    docker:
+      dockerfile: Dockerfile
+  - image: kube_frontend
+    context: frontend
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - kube/demo.yaml

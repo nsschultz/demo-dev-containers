@@ -31,6 +31,20 @@ In the most straightforward case, we just reuse the existing Dockerfile(s) to bu
   docker compose -f compose/docker-compose-runtime.yaml down
   ```
 
+### Build via Skaffold
+* Install Skaffold: https://skaffold.dev/docs/install/
+* To create a new skaffold.yaml file you can run the following command:
+  ```
+  skaffold init
+  ```
+* To spin up the service, run the following command:
+  ```
+  skaffold dev
+  ```
+* The images should get rebuilt & redeployed on each code change.
+* The site should be viewable from: http://localhost30000
+* Use CTRL+C to stop the services
+
 ### Run commands via Docker Exec
 In this situation, we use containers running the tools we need to build and run the application. It's much closer to what we would do in terms of development and we don't have to install and support those tools. However, the IDE still isn't offering much beyond text editing.
 * Run Docker Compose to build the application and run it
@@ -82,13 +96,4 @@ Finally, we will do out development from within the containers themselves. This 
 * Then click the "Continue" button in the lower right corner
 * Click on the "Open in VS Code" button on the frontend container
 * Once VS Code opens, switch to the /app directory (you can do this by going to File -> Open Folder)
-* Once done, do back to Docker Desktop and you can stop and delete the containers
-
-**Single Dev Container Example**
-* Open Docker Desktop and Select the Dev Environments section
-* Click "Create new environment" button
-* Then click the "Get Started" button in the lower right corner
-* Select "Use Existing Git Repo" and enter this **https://github.com/nsschultz/fantasy-baseball-position.git** into the text box and click continue
-* Then click the "Continue" button in the lower right corner
-* Click on the "Open in VS Code" button on the api container
 * Once done, do back to Docker Desktop and you can stop and delete the containers
