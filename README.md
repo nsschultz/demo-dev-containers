@@ -3,6 +3,7 @@ This is a demo project that shows a few different ways that containers can be us
 
 ## Pre-Reqs
 If you want to run these examples you will want to install:
+* Git (https://git-scm.com/downloads)
 * Docker Desktop (https://www.docker.com/products/docker-desktop/)
 * VS Code (https://code.visualstudio.com/)
 * Remote - Containers (Extension within VS Code)
@@ -53,7 +54,7 @@ In this situation, we use containers running the tools we need to build and run 
   ```
 * Execute commands against the containers
   ```
-  docker exec compose-backend-1 dotnet run
+  docker exec compose-backend-1 dotnet run --project FantasyBaseball.PlayerDatabaseService/FantasyBaseball.PlayerDatabaseService.csproj
   docker exec compose-frontend-1 npm run start
   ```
 * Alternatively exec into container in interactive mode
